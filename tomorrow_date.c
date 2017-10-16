@@ -16,7 +16,7 @@ int main(void)
 
     struct date today, tomorrow;
 
-    const int numberOfDays (struct date d);
+    int numberOfDays (struct date d);
     printf("Enter today's date (mm dd yyyy): ");
     scanf("%i%i%i", &today.month, &today.day, &today.year);
 
@@ -40,6 +40,21 @@ int main(void)
       }
     printf("Tomorrow's date is %i/%i/%.2i.\n", tomorrow.month, tomorrow.day, tomorrow.year % 100);
     return (0);
+}
+
+/*Function to find the number of days in a month */
+
+int numberOfDays(struct date d)
+{
+  int days;
+  boo1 isLeapYear(struct date d);
+  const int daysPerMonth[12] =
+  { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  if (isLeapYear(d) == true && d.month == 2)
+    days = 29;
+  else
+    days = daysPerMonth[d.month - 1];
+  return (days);
 }
 
 /* Function to determine if it's a leap year */
