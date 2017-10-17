@@ -61,9 +61,9 @@ int numberOfDays(struct date d)
 
 /* Function to determine if it's a leap year */
 
-boo1 isLeapYear(struct date d)
+bool isLeapYear(struct date d)
 {
-  boo1 leapYearFlag;
+  bool leapYearFlag;
 
   if((d.year % 4 == 0 && d.year % 100 != 0) || d.year % 400 == 0)
     leapYearFlag = true; /* It's a leap year */
