@@ -11,35 +11,32 @@ struct date
   int year;
 };
 
-int main(void)
+/* Function to calculate tomorrow's date */
+struct date dateUpdate(struct date today)
 {
+  struct date tomorrow;
+  int numberOfDays(struct date d);
 
-    struct date today, tomorrow;
+  if (today.day != numberOfDays(today))
+  {
+    tomorrow.day = today.day + 1;
+    tomorrow.month = today.month;
+    tomorrow.year = today.year;
+  }
+  else if (today.month == 12) /* end of year */
+  {
+    tomorrow.day = 1;
+    tomorrow.month = 1;
+    tomorrow.year = today.year + 1;
+  }
+  else                        /* end of month */
+  {
+    tomorrow.day = 1;
+    tomorrow.month = today.month + 1;
+    tomorrow.year = today.year;
+  }
 
-    int numberOfDays (struct date d);
-    printf("Enter today's date (mm dd yyyy): ");
-    scanf("%i%i%i", &today.month, &today.day, &today.year);
-
-    if (today.day != numberOfDays (today))
-    {
-	     tomorrow.day = today.day + 1;
-	     tomorrow.month = today.month;
-	     tomorrow.year = today.year;
-    }
-    else if (today.month == 12) /* end of year */
-    {
-	     tomorrow.day = 1;
-	     tomorrow.month = 1;
-	     tomorrow.year = today.year + 1;
-    }
-    else                        /* end of month */
-    {
-	     tomorrow.day = 1;
-	     tomorrow.month = today.month + 1;
-	     tomorrow.year = today.year;
-    }
-    printf("Tomorrow's date is %i/%i/%.2i.\n", tomorrow.month, tomorrow.day, tomorrow.year % 100);
-    return (0);
+  return (tomorrow);
 }
 
 /*Function to find the number of days in a month */
@@ -51,7 +48,7 @@ int numberOfDays(struct date d)
   const int daysPerMonth[12] =
     { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-  if (isLeapYear(d) == true && d.month == 2)
+  if (isLeapYear(d) && d.month == 2)
     days = 29;
   else
     days = daysPerMonth[d.month - 1];
@@ -70,4 +67,19 @@ bool isLeapYear(struct date d)
   else
     leapYearFlag = false; /* Not a leap year */
   return (leapYearFlag);
+}
+
+int main(void)
+{
+  struct date dateUpdate(struct date today);
+  struct date thisDay, nextDay;
+
+  printf("Enter today's date (mm dd yyyy): ");
+  scanf("%i%i%i", &thisDay.month, &thisDay.day, &thisDay.year);
+
+  nextDay = dateUpdate(thisDay);
+
+  printf("Tomorrow's date is %i/%i/%.2i.\n", nextDay.month, nextDay.day, nextDay.year % 100);
+
+  return (0);
 }
