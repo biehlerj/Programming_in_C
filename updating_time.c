@@ -15,7 +15,7 @@ int main(void)
   struct time currentTime, nextTime;
 
   printf("Enter the time (hh:mm:ss): ");
-  scanf("%i%i%i", &currentTime.hour, &currentTime.minutes, &currentTime.seconds);
+  scanf("%i:%i:%i", &currentTime.hour, &currentTime.minutes, &currentTime.seconds);
 
   nextTime = timeUpdate(currentTime);
 
